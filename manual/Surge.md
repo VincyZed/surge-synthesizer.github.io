@@ -1151,10 +1151,10 @@ will make the output smoother.
 #### Multi-Segment Envelope Generator (MSEG)
 
 Surge's Multi-Segment Envelope Generator (MSEG) is powerful and fully editable with a large number of curve types
-and various editing options. It can be used to create more involved LFO waveforms or envelopes
-compared to the previously mentioned modulation types.
-With the combination of various settings in the editing window and the usual internal modulation parameters,
-you can practically create any modulation shape you can think about.
+and various editing options. It can be used to create more complicated LFO waveforms or envelopes
+compared to the previously mentioned modulation shapes.
+With the combination of various settings in the editing window and the usual LFO parameters,
+you can practically create any modulation shape you can think of.
 
 *INSERT SCREENSHOT HERE*
 
@@ -1234,12 +1234,12 @@ At the bottom of the editor are a couple of options to configure editing modes a
 
 **Segment options**
 
-Each segment has options in a context menu which can be access with a right-click in the
-area of that segment. Some of them apply only to the right-clicked segment, while others apply
+Each segment has options in a context menu which can be accessed with a right-click in the
+area of that segment. Some of them are only applied to the right-clicked segment, while others are applied
 to the whole shape:
 
 - **Actions**
-  - **Split** - Splits the segment into two by adding a new node in the middle
+  - **Split** - Splits the segment into two by adding a new node in its center
   - **Delete** - Remove the segment and its preceding node
   - **Double duration** - Doubles the total duration of the whole shape
   - **Half duration** - Halfs the total duration of the whole shape
@@ -1285,7 +1285,7 @@ to the whole shape:
 
 
 #### LFO presets
-To the left of the **Rate** parameters, a small menu icon can be found. Clicking on it will reveal options to either
+To the left of the **Rate** parameters, a small menu icon can be found. Clicking on it will reveal options to
 save the selected LFO state, open previously saved states, and finally rescan presets to update the list.
 Presets will be categorized by modulation shape.
 
@@ -1298,7 +1298,7 @@ simply by right-clicking on any of them in the blue routing bar and using the op
 <br/>
 
 For more information on LFO algorithms, see
-[LFO structure](#configurable-modulator-structure) in the Technical Reference section.
+[LFO structure](#lfo-structure) in the Technical Reference section.
 
 <br/>
 <br/>
@@ -1326,8 +1326,8 @@ right-clicking on it and selecting **Switch to Random Unipolar**. The two can al
 so they can be considered as two independent modulation sources.
 
 Note that multiple parameters routed to that modulation source will all receive the same value (in percentage).
-To send different randomized values to different parameters, multiple configurable modulation sources can be
-set in a way to do this and with greater control. See the explanation of
+To send different randomized values to different parameters, multiple LFOs can be
+configured in a way to do this and with greater control. See the explanation of
 [the **Rate** parameter explanations](#parameters).
 
 <br/>
@@ -1674,7 +1674,7 @@ diagram.
 ### LFOs
 
 Each voice has 6 configurable LFOs and each scene has an
-additional 6 configurable LFOs, making each voice capable of receiving modulation from
+additional 6 configurable LFOs, making each voice effectively capable of receiving modulation from
 a total of 12 LFOs.
 
 ![](./images/Pictures/tech_lfos.png)
