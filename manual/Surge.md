@@ -1298,7 +1298,7 @@ simply by right-clicking on any of them in the blue routing bar and using the op
 <br/>
 
 For more information on LFO algorithms, see
-[LFO structure](#lfo-structure) in the Technical Reference section.
+[LFOs](#lfos) in the Technical Reference section.
 
 <br/>
 <br/>
