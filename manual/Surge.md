@@ -583,8 +583,7 @@ additional options related to mono note priority:
 - **Last note priority** - Will play the latest note when multiple notes are played together
 - **High note priority** - Will play the highest note when multiple notes are played together
 - **Low note priority** - Will play the lowest note when multiple notes are played together
-- **Legacy note priority** - Will play the latest note when hit and play the highest note when released
-when multiple notes are played together
+- **Legacy note priority** - When multiple notes are played together, will play the latest note once hit and play the highest remaining note once released.
 
 - **Sustain pedal in mono mode**
   - **Sustain pedal holds all notes (no note off retrigger)** -
@@ -802,7 +801,7 @@ The modulation's full range will then be shown with the corresponding green bar 
 
 <br/>
 Alternatively, routing mode can also be engaged or disengaged by pressing **TAB** on the keyboard,
-or clicking with the **Mouse3**, **Mouse4**, or **Mouse5** button anywhere over the interface.
+pressing the **middle**, **previous**, or **next** mouse buttons anywhere over the interface.
 
 You can also directly access the numerical modulation amount dialog (explained [here](#edit-value))
 by holding down **Ctrl/Cmd** on the keyboard, then dragging the desired modulation source over the target parameter.
@@ -814,7 +813,7 @@ the modulation polarity will be inverted.
 
 <br/>
 
-### Cross-modsource routing
+### Modulating LFO parameters with another modulator
 
 When clicking on of one of the LFO buttons in the routing bar, both the LFO source
 selection and the LFO editor will be selected. However, the two actions can be separated, as you can choose which button is selected as the modulation routing source, and at the same time edit parameters from **a different
@@ -830,7 +829,7 @@ However, as an example, note that logistically, an S-LFO can modulate parameters
 an LFO **cannot** modulate parameters of an S-LFO
 (see [Voice modulators vs. Scene modulators](#voice-modulators-vs-scene-modulators)).
 
-Remember that you can also see what LFO is currently being displayed in the editor here:
+Remember that you can also see which LFO is currently being displayed in the editor here:
 
 *INSERT PICTURE OF VERTICAL MOD NAME HERE*
 
@@ -878,8 +877,8 @@ After right-clicking on a modulated slider, you will see an option to easily cle
 
 ![Illustration 5: Slider context menu](./images/Pictures/clear_modulation-2.png)
 
-Alternatively, you can also reset its modulation slider (blue slider) to 0 by either double-clicking/Ctrl+clicking on it
-once routing mode is engaged, or typing in 0.00 in the type-in editor (see [Edit Value](#edit-value)).
+Alternatively, you can also reset its modulation slider (blue slider) to 0 by double-clicking on it
+when routing mode is engaged, or typing in 0.00 in the type-in editor (see [Edit Value](#edit-value)).
 
 <br/>
 
@@ -982,7 +981,7 @@ LFO shapes:
 | Sine     | Sine wave LFO                                                                                                                                  | Vertical bend    |
 | Triangle | Triangle wave LFO                                                                                                                              | Vertical bend    |
 | Square   | Pulse wave LFO                                                                                                                                | Pulse width      |
-| Ramp     | Ramp wave (sawtooth) LFO                                                                                                                       | Vertical bend    |
+| Sawtooth     | Sawtooth wave LFO                                                                                                                       | Vertical bend    |
 | Noise    | Smooth noise LFO                                                                                                                              | Correlation      |
 | S&H     | Step noise LFO                                                                                                                                | Correlation      |
 | Envelope | Envelope generator - sets the LFO to a constant output of 1, which can then be shaped by the LFO EG (see [LFO Envelope Generator](#lfo-envelope-generator))                                                                                                                          | Envelope shape   |
@@ -1196,11 +1195,11 @@ Note that you can only remove nodes if there are more than two nodes remaining i
 
 <br/>
 
-**Tension nodes**
+**Control points**
 
-In addition, you will also often find a **tension node** in the middle of a segment. This one can be dragged
+In addition, you will also often find a **control point** in the middle of a segment. This one can be dragged
 vertically (and also sometimes horizontally) to alter its curvature or other properties depending
-on the line type. To reset a tension node to its default position, simply double-click on it.
+on the line type. To reset a control point to its default position, simply double-click on it.
 
 <br/>
 
@@ -1221,8 +1220,9 @@ At the bottom of the editor are a couple of options to configure editing modes a
 
 - **Loop Mode**
   - **Off** - Don't loop when in Envelope mode, turn off draggable loop points.
-  - **On** - Loop until the end of release stage in the LFO EG is reached
-  - **Gate** - Loop until the beginning of release stage in the LFO EG is reached
+  - **On** - Loop forever in the loop region (between the loop points). Subsequent segments, if any,
+  will never be reached.
+  - **Gate** - Loop until the note is released, then immediately transition to the segments following the loop region.
 
 - **Snap To Grid**
   - **Horizontal** - Enables horizontal snapping to the grid. The number field to the right corresponds to the
@@ -1253,7 +1253,7 @@ to the whole shape:
   - **Minimal MSEG** - Loads a straight line going from 1 to 0 in value, a great starting point to build upon.
   - **Default voice MSEG** - Loads the default voice MSEG preset (envelope shape)
   - **Default scene MSEG** - Loads the default scene MSEG preset (triangle wave LFO shape)
-  - **8**, **16**, **32 step sequencer** - Replaces the existing shape by an 8, 16 or 32-step sequencer shape
+  - **8, 16, 32 step sequencer** - Replaces the existing shape by an 8, 16 or 32-step sequencer shape
   - **8, 16, 32 sawtooth plucks** - Replaces the existing shape by an 8, 16 or 32 sawtooth plucks shape
   - **8, 16, 32 lines sine** - Replaces the existing shape by a sine wave made out of 8, 16 or 32 segments.
 
@@ -1264,18 +1264,21 @@ to the whole shape:
    Deform parameter found in the LFO editor or not (see [deform parameter](#parameters)).
   - **Invert deform value** - Inverts the deform polarity applied to the selected segment.
 
-- **Segment types** - List of line types from which a segment can be. The tension node, if present,
+- **Segment types** - List of line types from which a segment can be. The control point, if present,
   will have a different effect depending on the type used.
   - **Hold** - Holds the value of the previous node up to the segment's end node. No tension node available.
-  - **Linear** - Single line. The tension node controls the curvature of the segment.
-  - **Bezier** - Single line. The tension node can freely bend the segment.
-  - **S-curve** - Curved line. The tension node controls how abrupt the S-shape is and its direction.
-  - **Bump** - Single line. The tension node can be moved up or down to create a "bump" in the segment.
-  - **Sine**, **sawtooth**, **triangle**, **square** - Sine, sawtooth, triangle or square waves.
-  The tension node determines how many wave cycles there are between the segment's beginning and end node.
-  - **Stairs, smooth stairs** - Stair or smooth stairs line types. The tension node determines
+  - **Linear** - Single line. The control point controls the curvature of the segment.
+  - **Bezier** - Single line. The control point can freely bend the segment.
+  - **S-curve** - Curved line. The control point determines how abrupt the S-shape is and its direction.
+  - **Bump** - Single line. The control point can be moved up or down to create a "bump" in the segment.
+  - **Sine, sawtooth, triangle, square** - Sine, sawtooth, triangle or square waves.
+  The control point determines how many wave cycles there are between the segment's beginning and end node.
+  - **Stairs, smooth stairs** - Stair or smooth stairs line types. The control point determines
   how many steps there are between the segment's beginning and end node.
-  - **Brownian bridge** - Brownian bridge line-type. The vertical value of the tension node determines the number of steps, while the horizontal value of the tension node adjusts correlation.
+  - **Brownian bridge** - Random between the beginning and end node every time it's being triggered.
+  Moving the control point down adjusts the number of steps while quantizing them up to 24 equidistant steps
+  (useful for random scales, for instance). Moving the control point up also adjusts the number of steps, but
+  this time without any quantization. The horizontal value of the control point adjusts correlation.
 
 
 <br/>
@@ -1285,7 +1288,7 @@ to the whole shape:
 
 
 #### LFO presets
-To the left of the **Rate** parameters, a small menu icon can be found. Clicking on it will reveal options to
+To the left of the **Rate** parameter, a small menu icon can be found. Clicking on it will reveal options to
 save the selected LFO state, open previously saved states, and finally rescan presets to update the list.
 Presets will be categorized by modulation shape.
 
@@ -1416,8 +1419,8 @@ stored in every patch.
 <br/>
 
 ## Effect Unit Selector
-On the top, the effect unit selector is also representing the signal path of the effects bloc.
-Here it is in more detail:
+The effect unit selector can be found towards the top of the FX section. It also represents the signal path
+of the effects bloc. Here it is in more detail:
 
 ![Illustration 18: The effect block](./images/Pictures/illu18.png)
 
@@ -1462,7 +1465,7 @@ Here's a list of the available effects:
 - Delay
 - Reverb 1
 - Reverb 2
-- Airwindows (59 effects collection from Airwindows)
+- Airwindows (58 effects collection from Airwindows)
 
 See [Effect algorithms](#effect-algorithms) in the Technical Reference section for more information about each effect.
 
@@ -1504,7 +1507,8 @@ There's also an option to **set to standard tuning**, and
 even an option to **show current tuning information**, which will open an HTML file containing all the information
 of each of the tones in the scale.
 
-Alternatively, Scala SCL and KBM files can also be imported using the [Status Area](#status-area)
+Alternatively, Scala SCL and KBM files can also be imported using the [Status Area](#status-area) or by dropping
+then anywhere on Surge's interface.
 
 See [Microtonal Tuning](#microtonal-tuning) in the Technical Reference section for more information.
 
@@ -1524,8 +1528,8 @@ go back in this sub-menu and select the option "Set [zoom %] as default", or "Se
 <br/>
 
 ### Skins
-This is where the UI skin can be chosen, reloaded and scanned. Surge comes with the **Classic** skin and a **Dark Skin**, but there are more to come
-in the future.
+This is where the UI skin can be chosen, reloaded and scanned. Surge comes with two factory skins:
+**Classic** and **Dark**, and one third-party skin by [Voger Design](https://vogerdesign.com/).
 
 ![](./images/Pictures/surge_dark.png)
 
@@ -1541,7 +1545,7 @@ see the documentation on [developing Surge skins](https://surge-synthesizer.gith
 
 ### User Settings
 
-In this sub-menu, there are a couple of options regarding the user interface.
+In this sub-menu, there are a numerous options regarding the user interface.
 
 #### Mouse Behavior
 This sub-menu contains options allowing you to change the sensitivity of the mouse when moving sliders.
@@ -1695,8 +1699,8 @@ Nonetheless, it is useful to know which limitations are present and why.
 *Modulation routing behind the scenes*
 
 The thing to remember is that voice modulation sources can't
-modulate scene parameters, global/effect parameters or parameters from scene LFOs, else this would cause
-a logistical conflict. Other that that it should be pretty straightforward.
+modulate scene parameters, global/effect parameters or parameters from scene LFOs, since these are two
+distinctly different modulation paths. Other that that it should be pretty straightforward.
 
 <br/>
 <br/>
@@ -1732,11 +1736,11 @@ independently.
 |--- |--- |--- |
 |Shape|Waveform shape -100% = pulse, 0% = saw, 100% = dual saw|-100 .. 100 %|
 |Width 1|Pulse-width (pulse) or relative phase (dual saw)|0 .. 100 %|
-|Width 2|Pulse-width of sub-oscillator|0 .. 100 %|
+|Width 2|Squeezes or expands the waveform in a different way. If positive, the two latter halves of two consecutive single cycles get squeezed closer together.|0 .. 100 %|
 |Sub Mix|Sub-oscillator mix, 0% = only main, 100% = only sub|0 .. 100 %|
 |Sync|Oscillator self-sync|0..60 semitones|
 |Unison Detune|Detuning of unison oscillators. 100% = 1 semitone in both directions.<br>Can be extended.<br>Can be switched between relative (default) and absolute.|0 .. 100 cents<br>0 .. 1200 cents<br>0 .. 16 Hz<br>0 .. 192 Hz|
-|Unison Voices|Number of oscillators used for unison, 1 = disabled.|1 .. 16|
+|Unison Voices|Number of oscillators used for unison (1 = unison disabled).|1 .. 16|
 
 <br/>
 
@@ -1772,8 +1776,8 @@ You can even create your own wavetables for Surge using [wt-tool](https://github
 Once a wavetable is loaded, you can also export it using the wavetable selection bar.
 
 Then, by modulating the **Morph** parameter, it is possible to create motion,
-dynamic response to playing and sonic variation. If you want to select an exact frame, drag the slider with
-Ctrl/Cmd-mouse, which allows you to snap to exact values in the table, useful for switching between distinct
+dynamic response to playing and sonic variation. If you want to select an exact frame, drag the slider while holding
+down Ctrl/Cmd, which allows you to snap to exact values in the table, useful for switching between distinct
 shapes, for example.
 
 What real-life
@@ -1990,7 +1994,7 @@ Some of the filter-(sub)types have some non-linear elements in them
 to allow them to self-oscillate in a stable and predictable manner.
 This means they will sound different depending on how hard they're
 driven, which can be conveniently controlled with the Pre-Filter
-Gain setting. For example, if the resonance peaks of a filter is too
+Gain setting found in the mixer. For example, if the resonance peaks of a filter is too
 loud, increase the Pre-Filter Gain to make the rest of the signal
 more dominant (and if needed decrease the gain at the output stage
 of the voice to compensate).
@@ -2039,8 +2043,8 @@ Sub-types:
 
 1. **Type 1** - Imitates a Moog resonant filter by Runge-Kutta numerical integration of
 a differential equation approximately describing the dynamics of the circuit.
-2. **Type 1 Compensated** - Gain compensated version of Type 1.
-3. **Type 2** - Moog Ladder filter that builds upon the work done by Smith and Stilson.
+2. **Type 1 Compensated** - Gain-compensated version of Type 1.
+3. **Type 2** - Moog Ladder filter that builds upon the work done by Smith and Stilson from Antti Huovilainen's paper.
 4. **Type 2 Compensated** - Gain compensated version of Type 2.
 
 Thanks to [@ddiakopoulos](https://github.com/ddiakopoulos) for maintaining this very
@@ -2049,7 +2053,7 @@ heavily informed the models we implemented.
 
 <br/>
 
-**K35** - 12 dB/Octave filters from the Odin 2 synthesizer.
+**K35** - 12 dB/Octave filters from the Odin 2 synthesizer, and inspired by the Korg MS-20 filter topology.
 Increasing resonance will make them sound dirtier and more aggressive.
 Available in **Lowpass** and **Highpass** types.
 
@@ -2085,15 +2089,17 @@ filters inside Surge. You can download Odin 2 [here](https://www.thewavewarden.c
 
 <br/>
 
-**OB-Xd 12dB** [...] Available in **Lowpass**, **Highpass**, **Bandpass** and **Notch** types.
+**OB-Xd 12dB** - 12dB filters from the OB-Xd synthesizer by discoDSP, and from the work of Vadim Filatov, which is based on the filters found in the Oberheim OB-Xa. Available in **Lowpass**, **Highpass**, **Bandpass**
+and **Notch** types.
 
 Sub-types:
-1. **Standard** -
-2. **Pushed** -
+1. **Standard** - Standard filter response.
+2. **Pushed** - Adds boosted non-linearities that drives the filter into more self-oscillation at high resonance
+values.
 
 <br/>
 
-**OB-Xd 24dB** [...] Available in **Lowpass** type.
+**OB-Xd 24dB** - 24dB filters found in the OB-Xd synthesizer by discoDSP, and from the work of Vadim Filatov, which is based on the filters found in the Oberheim OB-Xa. Available in **Lowpass** type.
 
 Sub-types:
 
@@ -2131,7 +2137,9 @@ Allpass can be found under the **Effect** category.
 
 <br/>
 
-**Comb +** and **Comb -** - Delay-Based Comb filter. The former has positive feedback and the latter has negative feedback.
+**Comb +** and **Comb -** - Comb filter, which is different compared to the previous filter types since it doesn't
+filter any part of the spectrum, but instead plays back the original signal with a delay. The former type has
+positive feedback and the latter has negative feedback.
 
 Sub-types:
 
@@ -2139,21 +2147,23 @@ Sub-types:
 2. **100% Wet**
 
 When the sub-type is set to 2 and resonance is 0%, the
-comb-filter will work purely as a delay-unit (with sub-sample
-precision). This can be used together with the other filter-unit
+comb filter will work purely as a delay unit (with sub-sample
+precision). This can be used together with the other filter unit
 along with filter block feedback to provide interesting options. The
-"wind/clarinet" and "pluck (fast)/simple waveguide" presets
+"Winds/Clarinet" and " Plucks/Simple Waveguide" presets
 showcase how this ability can be used for simple physical modeling.
 They only use the oscillator section to ignite the sound, the rest
 is in the filter block.
+
+Moreover, the negative comb filter produces the sound an octave lower than the positive comb filter.
 
 Comb + and Comb - can be found in the **Effect** category.
 
 <br/>
 
 **Sample & Hold** - The Sample & Hold module will sample the audio at the rate set by the
-cutoff-frequency. Resonance will emphasize oscillations around the
-cutoff frequency, not unlike the resonance peak of a lowpass-filter.
+cutoff frequency. Resonance will emphasize oscillations around the
+cutoff frequency, not unlike the resonance peak of a lowpass filter.
 
 Sample & Hold can be found in the **Effect** category.
 
@@ -2315,7 +2325,7 @@ Versatile Flanging algorithm.
 
 ### Phaser
 
-Flexible phaser with numerous parameters.
+Flexible phaser with adjustable number of stages.
 
 |--- |--- |--- |
 |Count|Number of stages|2 .. 16|
