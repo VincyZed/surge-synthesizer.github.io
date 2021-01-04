@@ -1,7 +1,20 @@
-1757154 : Append Surge folder name when exporting wavetables (#3575)
-Sat, 2 Jan 2021 21:46:06 +0100
-EvilDragon
+327413b : init rather than set_target on Controllers on load (#3580)
+Sun, 3 Jan 2021 17:03:58 -0500
+Paul
 
-Append Surge folder name when exporting wavetables (#3575)
+init rather than set_target on Controllers on load (#3580)
 
-Previously the path was reported as Documents\Exported Wavetables\wtname.wav, now it's Documents\Surge\Exported Wavetables, as it actually is the case
+The load path for ControllerModulationSources would call
+set_target on the modulator. This meant the modulators
+after a load would need to snap up to target. Fine. ALmost
+noone would ever notice that. *Except* the VST3 getParamNormalized
+asks for output, not target, of the controller, which is correct.
+
+But if you have a DAW which asks for the paramNormalized then sets
+that back on at load time, like Ardour can in teh VST3, that means your
+saved value get overridden
+
+So change ->set_target to ->init which has the sole difference
+of snapping the output to targe ton load, which is correct
+
+Closes #3561
