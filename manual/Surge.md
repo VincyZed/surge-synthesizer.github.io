@@ -2110,24 +2110,32 @@ Sub-types:
 
 <br/>
 
-**Cutoff Warp** - [...] Available in **Lowpass**, **Highpass**, **Bandpass**, **Notch** and **Allpass (Effect)** types.
+**Cutoff Warp** - 12dB/Octave filters created using a nonlinear biquad filter structure. The nonlinearities in the Cutoff Warp filter cause the cutoff frequency to sweep to higher frequencies as the signal level increases (see below). Available in **Lowpass**, **Highpass**, **Bandpass**, **Notch** and **Allpass (Effect)** types.
 
-**Resonance Warp** - [...] Available in **Lowpass**, **Highpass**, **Bandpass**, **Notch** and **Allpass (Effect)** types.
+![](./images/Pictures/cutoff_warp.png)
 
-Sub-types for  **Curoff Warp** and **Resonance Warp**:
+For more information on the Cutoff Warp filter, you can see [this blog post](https://jatinchowdhury18.medium.com/complex-nonlinearities-episode-4-nonlinear-biquad-filters-ae6b3f23cb0e) by Jatin Chowdhury, or [this 2020 DAFx paper](https://dafx2020.mdw.ac.at/proceedings/papers/DAFx2020_paper_3.pdf), specifically section 4.
 
-1. **1 Stage tanh**
-2. **2 Stages tanh**
-3. **3 Stages tanh**
-4. **4 Stages tanh**
-5. **1 Stage Soft Clip**
-6. **2 Stage Soft Clip**
-7. **3 Stage Soft Clip**
-8. **4 Stage Soft Clip**
-9. **1 Stage OJD**
-10. **2 Stages OJD**
-11. **3 Stages OJD**
-12. **4 Stages OJD**
+**Resonance Warp** - 12dB/Octave filters created using a nonlinear biquad filter structure. The nonlinearities in the Resonance Warp filter cause the resonance of the filter to decrease as the signal level increases (see below). Available in **Lowpass**, **Highpass**, **Bandpass**, **Notch** and **Allpass (Effect)** types.
+
+![](./images/Pictures/reso_warp.png)
+
+For more information on the Cutoff Warp filter, you can see [this blog post](https://jatinchowdhury18.medium.com/complex-nonlinearities-episode-5-nonlinear-feedback-filters-115e65fc0402) by Jatin Chowdhury, or [this 2020 DAFx paper](https://dafx2020.mdw.ac.at/proceedings/papers/DAFx2020_paper_3.pdf), specifically section 3.
+
+Sub-types for  **Cutoff Warp** and **Resonance Warp**:
+
+1. **1 Stage tanh** - Output taken from 1<sup>st</sup> stage (2-pole), using `tanh` nonlinearities.
+2. **2 Stages tanh** - Output taken from 2<sup>nd</sup> stage (4-pole), using `tanh` nonlinearities.
+3. **3 Stages tanh** - Output taken from 3<sup>rd</sup> stage (6-pole), using `tanh` nonlinearities.
+4. **4 Stages tanh** - Output taken from 4<sup>th</sup> stage (8-pole), using `tanh` nonlinearities.
+5. **1 Stage Soft Clip** - Output taken from 1<sup>st</sup> stage (2-pole), using soft-clipping nonlinearities.
+6. **2 Stages Soft Clip** - Output taken from 2<sup>nd</sup> stage (4-pole), using soft-clipping nonlinearities.
+7. **3 Stages Soft Clip** - Output taken from 3<sup>rd</sup> stage (6-pole), using soft-clipping nonlinearities.
+8. **4 Stages Soft Clip** - Output taken from 4<sup>th</sup> stage (8-pole), using soft-clipping nonlinearities.
+9. **1 Stage OJD** - Output taken from 1<sup>st</sup> stage (2-pole), using OJD nonlinearities.
+10. **2 Stages OJD** - Output taken from 2<sup>nd</sup> stage (4-pole), using OJD nonlinearities.
+11. **3 Stages OJD** - Output taken from 3<sup>rd</sup> stage (6-pole), using OJD nonlinearities.
+12. **4 Stages OJD** - Output taken from 4<sup>th</sup> stage (8-pole), using OJD nonlinearities.
 
 <br/>
 
